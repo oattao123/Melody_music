@@ -4,7 +4,7 @@ import useSound from "use-sound";
 import { useEffect, useState } from "react";
 import { BsPauseFill, BsPlayFill } from "react-icons/bs";
 import { HiSpeakerWave, HiSpeakerXMark } from "react-icons/hi2";
-import { AiFillStepBackward, AiFillStepForward } from "react-icons/ai";
+import { AiFillStepBackward, AiFillStepForward, AiOutlineUndo } from 'react-icons/ai';
 
 import { Song } from "@/types";
 import usePlayer from "@/hooks/usePlayer";
@@ -26,6 +26,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
   const player = usePlayer();
   const [volume, setVolume] = useState(1);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [repeat, setRepeat] = useState(false);
 
   const Icon = isPlaying ? BsPauseFill : BsPlayFill;
   const VolumeIcon = volume === 0 ? HiSpeakerXMark : HiSpeakerWave;
@@ -60,19 +61,24 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
     player.setId(previousSong);
   }
 
-  const [play, { pause, sound }] = useSound(
-    songUrl,
-    { 
-      volume: volume,
-      onplay: () => setIsPlaying(true),
-      onend: () => {
-        setIsPlaying(false);
+  const onRepeat = () => {
+    setRepeat(!repeat); // Toggling repeat state
+  };
+
+  const [play, { pause, sound }] = useSound(songUrl, {
+    volume: volume,
+    onplay: () => setIsPlaying(true),
+    onend: () => {
+      setIsPlaying(false);
+      if (repeat) { // Check if repeat is enabled, then replay the current song
+        play();
+      } else {
         onPlayNext();
-      },
-      onpause: () => setIsPlaying(false),
-      format: ['mp3']
-    }
-  );
+      }
+    },
+    onpause: () => setIsPlaying(false),
+    format: ['mp3'],
+  });
 
   useEffect(() => {
     sound?.play();
@@ -187,6 +193,11 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
 
         <div className="hidden md:flex w-full justify-end pr-2">
           <div className="flex items-center gap-x-2 w-[120px]">
+          <AiOutlineUndo 
+            onClick={onRepeat}
+            className={`cursor-pointer ${repeat ? 'text-green-500' : ''}`} // Highlight the button when repeat mode is on
+            size={34}
+            />
             <VolumeIcon 
               onClick={toggleMute} 
               className="cursor-pointer" 

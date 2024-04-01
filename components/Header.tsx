@@ -14,6 +14,8 @@ import { useUser } from "@/hooks/useUser";
 
 import Button from "./Button";
 
+
+
 interface HeaderProps {
   children: React.ReactNode;
   className?: string;
@@ -65,7 +67,7 @@ const Header: React.FC<HeaderProps> = ({
               transition
             "
           >
-            <RxCaretLeft className="text-white" size={35} />
+            <RxCaretLeft className="text-white" size={35} /> 
           </button>
           <button 
             onClick={() => router.forward()} 
@@ -121,16 +123,16 @@ const Header: React.FC<HeaderProps> = ({
           {user ? (
             <div className="flex gap-x-4 items-center">
               <Button 
+                // onClick={() => router.push('/account')} 
+                className="bg-white px-6 py-2"
+              >
+                {user.email}
+              </Button>
+              <Button 
                 onClick={handleLogout} 
                 className="bg-white px-6 py-2"
               >
                 Logout
-              </Button>
-              <Button 
-                onClick={() => router.push('/account')} 
-                className="bg-white"
-              >
-                <FaUserAlt />
               </Button>
             </div>
           ) : (
