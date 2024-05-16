@@ -1,4 +1,6 @@
 import { twMerge } from "tailwind-merge";
+import Image from 'next/image';
+import Logo from '@/public/images/logo.png'
 
 interface BoxProps {
   children: React.ReactNode;
@@ -10,10 +12,11 @@ const Box: React.FC<BoxProps> = ({
   className
  }) => {
   return ( 
+    <>
     <div 
       className={twMerge(
         `
-        bg-neutral-900 
+        bg-customColor1
         rounded-lg 
         h-fit 
         w-full
@@ -21,7 +24,7 @@ const Box: React.FC<BoxProps> = ({
         className
       )}>
       {children}
-    </div>
+    </div></>
   );
 }
  

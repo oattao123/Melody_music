@@ -12,7 +12,7 @@ const Search = async ({ searchParams }: SearchProps) => {
   return (
     <div 
       className="
-        bg-neutral-900 
+        bg-gradient-to-r from-customColor1 to-customColor4
         rounded-lg 
         h-full 
         w-full 

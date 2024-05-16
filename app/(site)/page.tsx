@@ -8,8 +8,9 @@ export default async function Home() {
   const songs = await getSongs();
   
   return (
+    
     <div className="
-    bg-neutral-900
+    bg-gradient-to-r from-customColor1 to-customColor4
     rounded-lg
     h-full
     w-full
@@ -24,7 +25,7 @@ export default async function Home() {
             text-3xl
             font-semibold
             ">
-              Welcome back
+              Hello, welcome to Melo music
             </h1>
             <div
               className="
@@ -37,8 +38,8 @@ export default async function Home() {
               mt-4
               ">
                 <ListItem
-                  image="/images/liked.png"
-                  name="Liked Songs"
+                  image="/images/playlist_icon.png"
+                  name="Songs in your playlist"
                   href="/liked"
                 />
               </div>

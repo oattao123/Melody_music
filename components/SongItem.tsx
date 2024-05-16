@@ -19,7 +19,7 @@ const SongItem: React.FC<SongItemProps> = ({
   const imagePath = useLoadImage(data);
 
   return ( 
-    <div
+    <div 
       onClick={() => onClick(data.id)} 
       className="
         relative 
@@ -31,9 +31,9 @@ const SongItem: React.FC<SongItemProps> = ({
         rounded-md 
         overflow-hidden 
         gap-x-4 
-        bg-neutral-400/5 
+        bg-neutral-900/30
         cursor-pointer 
-        hover:bg-neutral-400/10 
+        hover:bg-neutral-900/20 
         transition 
         p-3
       "

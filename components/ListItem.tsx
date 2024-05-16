@@ -56,7 +56,7 @@ const ListItem: React.FC<ListItemProps> = ({
                     flex 
                     items-center s
                     justify-center 
-                    bg-green-500 
+                    bg-white
                     p-4 
                     drop-shadow-md 
                     right-5

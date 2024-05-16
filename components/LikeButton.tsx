@@ -9,6 +9,7 @@ import { useSessionContext } from "@supabase/auth-helpers-react";
 import { useUser } from "@/hooks/useUser";
 import useAuthModal from "@/hooks/useAuthModal";
 
+
 interface LikeButtonProps {
   songId: string;
 };
@@ -77,7 +78,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({
         toast.error(error.message);
       } else {
         setIsLiked(true);
-        toast.success('Success');
+        toast.success('Added to your playlist');
       }
     }
 
@@ -93,7 +94,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({
       "
       onClick={handleLike}
     >
-      <Icon color={isLiked ? '#22c55e' : 'white'} size={25} />
+      <Icon color={isLiked ? 'red' : 'white'} size={25} />
     </button>
   );
 }

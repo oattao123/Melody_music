@@ -13,7 +13,7 @@ const Liked = async () => {
   return (
     <div 
       className="
-        bg-neutral-900 
+      bg-gradient-to-r from-customColor1 to-customColor4
         rounded-lg 
         h-full 
         w-full 
@@ -53,7 +53,7 @@ const Liked = async () => {
                   font-bold
                 "
               >
-                Liked Songs
+                Songs in your playlist
               </h1>
             </div>
           </div>
