@@ -144,7 +144,7 @@ const Header: React.FC<HeaderProps> = ({
                   onClick={authModal.onOpen} 
                   className="
                     bg-transparent 
-                    text-neutral-300 
+                    text-neutral-500 
                     font-medium
                   "
                 >
