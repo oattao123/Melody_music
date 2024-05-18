@@ -13,7 +13,6 @@ import LikeButton from "./LikeButton";
 import MediaItem from "./MediaItem";
 import Slider from "./Slider";
 
-
 interface PlayerContentProps {
   song: Song;
   songUrl: string;
@@ -21,7 +20,7 @@ interface PlayerContentProps {
 
 const PlayerContent: React.FC<PlayerContentProps> = ({ 
   song, 
-  songUrl
+  songUrl 
 }) => {
   const player = usePlayer();
   const [volume, setVolume] = useState(1);
@@ -65,7 +64,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
     setRepeat(!repeat); // Toggling repeat state
   };
 
-  const [play, { pause, sound }] = useSound(songUrl, {
+  const [play, { pause, stop }] = useSound(songUrl, {
     volume: volume,
     onplay: () => setIsPlaying(true),
     onend: () => {
@@ -81,12 +80,12 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
   });
 
   useEffect(() => {
-    sound?.play();
+    play();
     
     return () => {
-      sound?.unload();
+      stop();
     }
-  }, [sound]);
+  }, [play, stop]);
 
   const handlePlay = () => {
     if (!isPlaying) {
@@ -213,5 +212,5 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
       </div>
    );
 }
- 
+
 export default PlayerContent;
