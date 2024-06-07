@@ -1,13 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { AiOutlinePlus } from "react-icons/ai";
+import { FaCheckCircle,FaHeart } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import { useSessionContext } from "@supabase/auth-helpers-react";
 
 import { useUser } from "@/hooks/useUser";
 import useAuthModal from "@/hooks/useAuthModal";
+import { Icon } from '@iconify/react';
 
 
 interface LikeButtonProps {
@@ -25,6 +27,8 @@ const LikeButton: React.FC<LikeButtonProps> = ({
   const { user } = useUser();
 
   const [isLiked, setIsLiked] = useState<boolean>(false);
+  const [isSimpleLiked, setIsSimpleLiked] = useState<boolean>(false);
+  const [hasShownMessage, setHasShownMessage] = useState<boolean>(false);
 
   useEffect(() => {
     if (!user?.id) {
@@ -47,7 +51,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({
     fetchData();
   }, [songId, supabaseClient, user?.id]);
 
-  const Icon = isLiked ? AiFillHeart : AiOutlineHeart;
+  const Icon = isLiked ? FaCheckCircle : AiOutlinePlus;
 
   const handleLike = async () => {
     if (!user) {
@@ -84,18 +88,42 @@ const LikeButton: React.FC<LikeButtonProps> = ({
 
     router.refresh();
   }
+  const handleSimpleLike = () => {
+    if (!isSimpleLiked) {
+      toast.success('I like this song');
+    }
+    setIsSimpleLiked(!isSimpleLiked);
+  }
 
   return (
+    <>
     <button 
-      className="
-        cursor-pointer 
-        hover:opacity-75 
-        transition
-      "
-      onClick={handleLike}
-    >
-      <Icon color={isLiked ? 'red' : 'white'} size={25} />
-    </button>
+        className="
+          cursor-pointer 
+          hover:opacity-75 
+          transition
+          ml-4
+        "
+        onClick={handleSimpleLike}
+      >
+        <FaHeart 
+          color={isSimpleLiked ? 'red' : 'white'} 
+          size={20} 
+        />
+      </button>
+      <button 
+        className="
+          cursor-pointer 
+          hover:opacity-75 
+          transition
+        "
+        onClick={handleLike}
+      >
+        <Icon color={isLiked ? 'green' : 'white'} size={25} />
+        
+      </button>
+      
+    </>
   );
 }
 
