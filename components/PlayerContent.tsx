@@ -194,7 +194,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
           <div className="flex items-center gap-x-2 w-[120px]">
           <AiOutlineUndo 
             onClick={onRepeat}
-            className={`cursor-pointer ${repeat ? 'customColor4' : ''}`} // Highlight the button when repeat mode is on
+            className={`cursor-pointer ${repeat ? 'text-customColor4' : ''}`} // Highlight the button when repeat mode is on
             size={34}
             />
             <VolumeIcon 
