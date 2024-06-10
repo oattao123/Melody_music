@@ -33,11 +33,6 @@ To get started with Melody_music, follow these steps:
 
     Open your browser and navigate to [http://localhost:3000](http://localhost:3000) to see Melody_music in action. The application will automatically reload as you make changes to the code.
 
-## Editing the Project
-
-You can start customizing Melody_music by editing the `app/page.tsx` file. Any changes you make to this file will automatically update the page, thanks to Next.js's hot-reloading feature.
-
-This project also utilizes [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to optimize and load Inter, a custom Google Font, ensuring a sleek and modern look for your application.
 
 ## Project Structure
 
